@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
 
     public void EnsureSFXDestruction(AudioSource source)
     {
-        StartCoroutine("DelayedSFXDestruction", source);
+        //StartCoroutine("DelayedSFXDestruction", source);
     }
 
     private IEnumerator DelayedSFXDestruction(AudioSource source)
