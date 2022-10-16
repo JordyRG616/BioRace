@@ -6,12 +6,12 @@ public class BioFeedSimulator : MonoBehaviour
 {
     
     public int biofeedValue = 60;
-    private float decimalValue = 60f;
+    public float decimalValue = 60f;
     public int i = 5;
 
     void Start()
     {
-
+        
     }
     // Update is called once per frame
     void Update()
