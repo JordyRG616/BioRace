@@ -7,7 +7,7 @@ public class PathFollower : MonoBehaviour
 {
     public PathCreator pathCreator;
     public float speed = 5;
-    float distanceTravelled;
+    public float distanceTravelled;
 
     private void Update()
     {
