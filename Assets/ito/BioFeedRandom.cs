@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class BioFeedRandom : MonoBehaviour
 {
-    public float biofeedValue;
+    public int biofeedValue;
+    private float interpolationPeriod = 1f;
+    
+    [HideInInspector]
+    public int baseValue;
     private float time = 0.0f;
-    public float interpolationPeriod = 1f;
-
+    
     private void Start()
     {
-        biofeedValue = 60f;
+        baseValue = 60;
     }
     void Update()
     {
@@ -19,7 +22,7 @@ public class BioFeedRandom : MonoBehaviour
         if (time >= interpolationPeriod)
         {
             time = 0.0f;
-            biofeedValue = Mathf.Round(Random.Range(0f, 5f));
+            biofeedValue = (int)(baseValue + Mathf.Round(Random.Range(0f, 5f)));
              
         }
     }
