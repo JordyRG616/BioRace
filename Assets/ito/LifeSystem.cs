@@ -28,7 +28,7 @@ public class LifeSystem : MonoBehaviour
         {
             life -= d;
             Destroy(circles[life].gameObject);
-            bio.biofeedValue += 30;
+            bio.baseValue += 30;
 
             if (life < 1)
             {

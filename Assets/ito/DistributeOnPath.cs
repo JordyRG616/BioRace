@@ -7,8 +7,8 @@ public class DistributeOnPath : MonoBehaviour
 {
     public GameObject obstacle;
     public PathCreator pc;    
-    public float distanceBetween = 20;
-    public int numberObstacles = 10;
+    public float distanceBetween = 30;
+    public int numberObstacles = 50;
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class DistributeOnPath : MonoBehaviour
             obstacle.transform.position = pc.path.GetPointAtDistance(i * distanceBetween);
             obstacle.transform.rotation = pc.path.GetRotationAtDistance(i * distanceBetween);
 
-            Instantiate(obstacle, obstacle.transform.position + new Vector3(0, 0.3f, 0), obstacle.transform.rotation);
+            Instantiate(obstacle, obstacle.transform.position + new Vector3(0f, 0.2f, 0), obstacle.transform.rotation);
         }
     }
     void Update()

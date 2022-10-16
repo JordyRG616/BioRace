@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class HeadLightsMech : MonoBehaviour
 {
-    public BioFeedSimulator bio;
-
+    public BioFeedRandom bio;
     Light headLight;
+
     void Start()
     {
         headLight = GetComponent<Light>();
@@ -15,10 +15,12 @@ public class HeadLightsMech : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        headLight.intensity = map(((float)bio.biofeedValue), 60f, 140f, 1000f, 2f);
-        headLight.range = map(((float)bio.biofeedValue), 60f, 140f, 70f, 10f);
-        headLight.innerSpotAngle = map(((float)bio.biofeedValue), 60f, 140f, 50f, 5f);
-        headLight.spotAngle = map(((float)bio.biofeedValue), 60f, 140f, 60f, 15f);
+        Debug.Log(bio.biofeedValue);
+
+        headLight.intensity = map(bio.biofeedValue, 60f, 160f, 1000f, 10f);
+        headLight.range = map(bio.biofeedValue, 60f, 160f, 500f, 5f);
+        headLight.innerSpotAngle = map(bio.biofeedValue, 60f, 160f, 80f, 0f);
+        headLight.spotAngle = map(bio.biofeedValue, 60f, 160f, 100f, 10f);
     }
 
     public static float map(float value, float leftMin, float leftMax, float rightMin, float rightMax)
