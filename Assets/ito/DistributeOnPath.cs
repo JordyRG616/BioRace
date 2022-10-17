@@ -8,16 +8,27 @@ public class DistributeOnPath : MonoBehaviour
     public GameObject obstacle;
     public PathCreator pc;    
     public float distanceBetween = 20;
+    public float randomDistribuition;
     public int numberObstacles = 10;
+    public float horizontalOffset;
+    public float initialOffset;
 
     private void Start()
     {
         for (int i = 1; i <= numberObstacles; i++)
         {
-            obstacle.transform.position = pc.path.GetPointAtDistance(i * distanceBetween);
-            obstacle.transform.rotation = pc.path.GetRotationAtDistance(i * distanceBetween);
+            var rdmDist = Random.Range(0, randomDistribuition);
+            distanceBetween += rdmDist * i;
 
-            Instantiate(obstacle, obstacle.transform.position + new Vector3(0, 0.3f, 0), obstacle.transform.rotation);
+            var dist = distanceBetween + initialOffset;
+            var pos= pc.path.GetPointAtDistance(dist);
+            var rot = pc.path.GetRotationAtDistance(dist);
+            var nor = pc.path.GetNormalAtDistance(dist);
+
+            var rdm = Random.Range(-horizontalOffset, horizontalOffset);
+
+            var obj = Instantiate(obstacle, pos + nor * rdm, rot);
+            obj.transform.SetParent(transform);
         }
     }
     void Update()
