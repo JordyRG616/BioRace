@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BioFeedSimulator : MonoBehaviour
+public class BioFeedUpDown : MonoBehaviour
 {
     
     public int biofeedValue = 60;
