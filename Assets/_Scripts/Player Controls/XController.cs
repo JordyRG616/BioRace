@@ -17,6 +17,8 @@ public class XController : MonoBehaviour
     [SerializeField] private float modelAngleTilt;
     [Header("GameOver UI")]
     [SerializeField] private GameObject gameOverPanel;
+    [Header("Audio")]
+    public AudioSource engine, curve;
     private float sign;
     private float skrt;
     private float counter;
@@ -98,13 +100,20 @@ public class XController : MonoBehaviour
         var wait = new WaitForSeconds(0.01f);
         falling = true;
 
-        while(step < 1)
+        while (step < 1)
         {
             car.localPosition += Vector3.right * step * fallSpeed;
             step += 0.01f;
             yield return wait;
         }
 
+        GameOver();
+    }
+
+    public void GameOver()
+    {
+        falling = true;
+        Time.timeScale = 0.1f;
         gameOverPanel.SetActive(true);
     }
 
@@ -119,10 +128,12 @@ public class XController : MonoBehaviour
         if (direction != 0)
         {
             speed += direction * acceleration;
+            curve.volume = .45f;
         }
         else if(Mathf.Abs(speed) >= 0)
         {
             speed += -Mathf.Sign(speed) * restituitionForce;
+            curve.volume = 0;
         }
 
         return speed + Skrt();

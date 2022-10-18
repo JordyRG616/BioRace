@@ -10,7 +10,7 @@ public class DistributeOnPath : MonoBehaviour
     public float distanceBetween = 20;
     public float randomDistribuition;
     public int numberObstacles = 10;
-    public float horizontalOffset;
+    public float horizontalOffset, verticalOffset;
     public float initialOffset;
 
     private void Start()
@@ -24,11 +24,13 @@ public class DistributeOnPath : MonoBehaviour
             var pos= pc.path.GetPointAtDistance(dist);
             var rot = pc.path.GetRotationAtDistance(dist);
             var nor = pc.path.GetNormalAtDistance(dist);
+            var perp = -Vector3.Cross(nor, pc.path.GetDirectionAtDistance(dist));
 
             var rdm = Random.Range(-horizontalOffset, horizontalOffset);
 
-            var obj = Instantiate(obstacle, pos + nor * rdm, rot);
+            var obj = Instantiate(obstacle, pos + nor * rdm + perp * verticalOffset, rot);
             obj.transform.SetParent(transform);
+            obj.transform.rotation = Random.rotation;
         }
     }
     void Update()

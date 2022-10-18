@@ -8,17 +8,19 @@ public class LifeSystem : MonoBehaviour
     public GameObject[] circles;
     private int life;
     private bool dead;
+    public AudioSource source;
 
     private void Start()
     {
         life = circles.Length;
+        Time.timeScale = 1; 
     }
     // Update is called once per frame
     void Update()
     {
         if (dead == true)
         {
-            Debug.Log("DEAD");
+            FindObjectOfType<XController>().GameOver();
         }
     }
 
@@ -29,6 +31,7 @@ public class LifeSystem : MonoBehaviour
             life -= d;
             Destroy(circles[life].gameObject);
             bio.baseValue += 30;
+            source.Play();
 
             if (life < 1)
             {
